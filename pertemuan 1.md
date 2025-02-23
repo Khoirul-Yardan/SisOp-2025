@@ -1,3 +1,4 @@
+# Khoirul Yardan Mauluddin Zhorif, nrp  3124521022 dari kelas TI A PDSKU Lamongan
 # 📌 Tugas Pertemuan 1 - Sistem Operasi
 
 ## 📖 Topik: Sistem Bilangan

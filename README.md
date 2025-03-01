@@ -5,7 +5,7 @@
 ## Semester 2  
 ### Sistem Operasi  
 
-<img src="https://upload.wikimedia.org/wikipedia/id/4/44/Logo_PENS.png" alt="PENS Logo" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/id/4/44/Logo_PENS.png" alt="PENS Logo" width="400">
 
 **Dosen Pengampu:**  
 Dr Ferry Astika Saputra ST, M.Sc  

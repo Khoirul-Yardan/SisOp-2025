@@ -7,7 +7,7 @@ Linux Boot Process adalah tahapan yang terjadi ketika komputer dinyalakan hingga
 
 ## 🏁 Flowchart
 <p align="center">
-  <img src="Flow.png" alt="Linux Boot Process Flowchart" width="600">
+  <img src="Flow.png" alt="Linux Boot Process Flowchart" width="200">
 </p>
 
 ---

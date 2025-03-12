@@ -20,6 +20,8 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 </div>
 📂 Daftar Tugas
 
-- 📜 [Sistem Bilangan](Pertemuan1/README.md)
-- 🔧 [Chapter 1: Introduction](Pertemuan2/README.md)
-- 🖥️ [Boot Process](Pertemuan3/README.md)
+-  [Sistem Bilangan](Pertemuan1/README.md)
+-  [Chapter 1: Introduction](Pertemuan2/README.md)
+-  [Boot Process](Pertemuan3/README.md)
+-  [Resume](Pertemuan4/README.md)
+

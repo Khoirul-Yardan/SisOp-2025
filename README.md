@@ -23,5 +23,7 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [Sistem Bilangan](Pertemuan1/README.md)
 -  [Chapter 1: Introduction](Pertemuan2/README.md)
 -  [Boot Process](Pertemuan3/README.md)
--  [Resume](Pertemuan4/README.md)
+-  [Resume proses management](Pertemuan4/README.md)
+-  [Resume Appendix](Pertemuan5/ResumeApendix.md)
+-  [Komentar Flops Iops](Pertemuan5/flopsiops.md)
 

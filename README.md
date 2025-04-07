@@ -26,4 +26,5 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [Resume proses management](Pertemuan4/README.md)
 -  [Resume Appendix](Pertemuan5/ResumeApendix.md)
 -  [Komentar Flops Iops](Pertemuan5/flopsiops.md)
+-  [Deskripsi dan Visualisasi Fork](Pertemuan6/README.md)
 

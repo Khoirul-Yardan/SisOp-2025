@@ -319,4 +319,5 @@ Kode ini menunjukkan bagaimana sistem operasi Windows menangani pembuatan thread
 **Kesimpulan:**
 Program ini adalah contoh dasar bagaimana menjalankan sebuah fungsi dalam thread terpisah di Windows. Sistem operasi Windows menyediakan kontrol lebih rendah (low-level) melalui `CreateThread()`, memungkinkan pemrograman multithread dengan cara manual, dibandingkan pendekatan high-level seperti di Java.
 
-[![Evolusi Teknologi](path/to/image-preview.png)](Evolusiteknologi.pdf)
+[PPT Evolusi Teknologi](Evolusiteknologi.pdf)
+

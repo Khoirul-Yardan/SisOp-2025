@@ -10,6 +10,11 @@
 - [PPT EVOLUSI TEKNOLOGI](#PPT-EVOLUSI-TEKNOLOGI)
 ## Konsep Single Thread dan Multithread
 
+## 
+<p align="center">
+  <img src="Thread.png" alt="Sigle and Multi Thread" width="200">
+</p>
+
 ### Single Thread
 Single Thread adalah model eksekusi di mana program menjalankan satu proses dalam satu waktu. Semua tugas dilakukan secara berurutan, sehingga jika satu tugas memerlukan waktu lama, seluruh program akan menunggu hingga tugas tersebut selesai. Model ini sederhana dan mudah diimplementasikan, namun kurang efisien untuk aplikasi yang memerlukan banyak operasi simultan.
 

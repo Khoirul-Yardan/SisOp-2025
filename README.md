@@ -27,4 +27,5 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [Resume Appendix](Pertemuan5/ResumeApendix.md)
 -  [Komentar Flops Iops](Pertemuan5/flopsiops.md)
 -  [Deskripsi dan Visualisasi Fork](Pertemuan6/README.md)
+-  [konsep single thread dan multithread!](Pertemuan7/README.md)
 

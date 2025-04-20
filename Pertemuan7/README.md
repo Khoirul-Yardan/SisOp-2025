@@ -7,7 +7,7 @@
   - [Java Fork/Join Framework (SumTask.java)](#java-forkjoin-framework-sumtaskjava)
   - [POSIX Threading di Linux (thrd-posix.c)](#posix-threading-di-linux-thrd-posixc)
   - [Win32 Threading di Windows (thrd-win32.c)](#win32-threading-di-windows-thrd-win32c)
-
+- [Implementasi Threading](#PPT-EVOLUSI-TEKNOLOGI)
 ## Konsep Single Thread dan Multithread
 
 ### Single Thread
@@ -319,5 +319,6 @@ Kode ini menunjukkan bagaimana sistem operasi Windows menangani pembuatan thread
 **Kesimpulan:**
 Program ini adalah contoh dasar bagaimana menjalankan sebuah fungsi dalam thread terpisah di Windows. Sistem operasi Windows menyediakan kontrol lebih rendah (low-level) melalui `CreateThread()`, memungkinkan pemrograman multithread dengan cara manual, dibandingkan pendekatan high-level seperti di Java.
 
+### PPT EVOLUSI TEKNOLOGI
 [PPT Evolusi Teknologi](Evolusiteknologi.pdf)
 

@@ -7,7 +7,7 @@
   - [Java Fork/Join Framework (SumTask.java)](#java-forkjoin-framework-sumtaskjava)
   - [POSIX Threading di Linux (thrd-posix.c)](#posix-threading-di-linux-thrd-posixc)
   - [Win32 Threading di Windows (thrd-win32.c)](#win32-threading-di-windows-thrd-win32c)
-- [Implementasi Threading](#PPT-EVOLUSI-TEKNOLOGI)
+- [PPT EVOLUSI TEKNOLOGI](#PPT-EVOLUSI-TEKNOLOGI)
 ## Konsep Single Thread dan Multithread
 
 ### Single Thread

@@ -12,7 +12,7 @@
 
 ## 
 <p align="center">
-  <img src="Thread.png" alt="Sigle and Multi Thread" width="200">
+  <img src="Thread.png" alt="Sigle and Multi Thread" width="500">
 </p>
 
 ### Single Thread

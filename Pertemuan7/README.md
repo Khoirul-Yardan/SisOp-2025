@@ -353,6 +353,7 @@ Dengan menggunakan Hukum Amdahl, hitunglah percepatan (speedup) dari sebuah apli
 (a) Dua core prosesor
 
 (b) Empat core prosesor
+
 **Rumus Hukum Amdahl:**
 <p align="center">
   <img src="rumus.png" alt="Sigle and Multi Thread" width="500">

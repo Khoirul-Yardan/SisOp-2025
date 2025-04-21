@@ -8,6 +8,7 @@
   - [POSIX Threading di Linux (thrd-posix.c)](#posix-threading-di-linux-thrd-posixc)
   - [Win32 Threading di Windows (thrd-win32.c)](#win32-threading-di-windows-thrd-win32c)
 - [PPT EVOLUSI TEKNOLOGI](#PPT-EVOLUSI-TEKNOLOGI)
+-[Practice Exercises Chapter4](#Practice-Exercises-Chapter4)
 ## Konsep Single Thread dan Multithread
 
 ## 
@@ -326,4 +327,99 @@ Program ini adalah contoh dasar bagaimana menjalankan sebuah fungsi dalam thread
 
 ### PPT EVOLUSI TEKNOLOGI
 [PPT Evolusi Teknologi](Evolusiteknologi.pdf)
+
+### Practice Exercises Chapter4
+
+## 4.1
+**Provide three programming examples in which multithreading provides better performance than a single-threaded solution.**
+
+1. **Web Server Handling Multiple Requests**  
+   A multithreaded web server can handle multiple client requests simultaneously, improving responsiveness and throughput compared to a single-threaded server.
+
+2. **Parallel Matrix Multiplication**  
+   In matrix operations (such as multiplying large matrices), using threads to compute rows/columns in parallel can significantly reduce computation time.
+
+3. **Video Processing or Rendering**  
+   Encoding or rendering frames of a video can be divided across multiple threads, speeding up the process compared to sequential frame processing.
+
+---
+
+## 4.2  
+**Using Amdahl's Law, calculate the speedup gain of an application that has a 60 percent parallel component for:**
+- **(a) two processing cores**
+- **(b) four processing cores**
+
+**Amdahl’s Law formula:**
+\[
+Speedup = \frac{1}{(1 - P) + \frac{P}{N}}
+\]
+Where:
+- \( P \) = parallel portion (60% = 0.6)
+- \( N \) = number of processing cores
+
+**(a) Two cores:**
+\[
+Speedup = \frac{1}{(1 - 0.6) + \frac{0.6}{2}} = \frac{1}{0.4 + 0.3} = \frac{1}{0.7} \approx 1.43
+\]
+
+**(b) Four cores:**
+\[
+Speedup = \frac{1}{(1 - 0.6) + \frac{0.6}{4}} = \frac{1}{0.4 + 0.15} = \frac{1}{0.55} \approx 1.82
+\]
+
+---
+
+## 4.3  
+**Does the multithreaded web server described in Section 4.1 exhibit task or data parallelism?**
+
+It exhibits **task parallelism**. Each thread handles a different client request (task), rather than performing the same operation on different data.
+
+---
+
+## 4.4  
+**What are two differences between user-level threads and kernel-level threads? Under what circumstances is one type better than the other?**
+
+**Differences:**
+1. **Control**: User-level threads are managed by the user-level thread library, while kernel-level threads are managed by the OS kernel.
+2. **Context Switch**: Switching between user-level threads is faster as it does not require kernel mode transition, whereas kernel threads require OS intervention.
+
+**Use Cases:**
+- User-level threads are better for applications requiring fast context switching and do not need true parallelism.
+- Kernel-level threads are better when threads need to run truly in parallel on multiple cores.
+
+---
+
+## 4.5  
+**Describe the actions taken by a kernel to context-switch between kernel-level threads.**
+
+1. Save the state (registers, program counter, etc.) of the current thread.
+2. Update thread control blocks (TCBs).
+3. Load the state of the next thread to be scheduled.
+4. Update the memory management data (if needed).
+5. Resume execution of the new thread.
+
+---
+
+## 4.6  
+**What resources are used when a thread is created? How do they differ from those used when a process is created?**
+
+- **Thread creation** uses:
+  - Thread control block
+  - Stack
+  - Registers
+  - Scheduling information
+
+- **Process creation** uses:
+  - Separate memory space
+  - File descriptors
+  - Code/data/heap segments
+
+**Difference**: Threads share the same memory space of the process, while processes have isolated memory and resources.
+
+---
+
+## 4.7  
+**Assume that an operating system maps user-level threads to the kernel using the many-to-many model and that the mapping is done through LWPs. Furthermore, the system allows developers to create real-time threads for use in real-time systems. Is it necessary to bind a real-time thread to an LWP? Explain.**
+
+Yes, it is **necessary** to bind a real-time thread to a Light Weight Process (LWP). Binding ensures that the real-time thread has a dedicated kernel-level entity for execution, which is essential to meet real-time scheduling guarantees and avoid delays caused by contention or remapping.
 

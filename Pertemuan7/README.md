@@ -8,7 +8,7 @@
   - [POSIX Threading di Linux (thrd-posix.c)](#posix-threading-di-linux-thrd-posixc)
   - [Win32 Threading di Windows (thrd-win32.c)](#win32-threading-di-windows-thrd-win32c)
 - [PPT EVOLUSI TEKNOLOGI](#PPT-EVOLUSI-TEKNOLOGI)
--[Practice Exercises Chapter4](#Practice-Exercises-Chapter4)
+- [Practice Exercises Chapter4](#Practice-Exercises-Chapter4)
 ## Konsep Single Thread dan Multithread
 
 ## 

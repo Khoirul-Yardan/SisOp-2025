@@ -348,24 +348,15 @@ Program ini adalah contoh dasar bagaimana menjalankan sebuah fungsi dalam thread
 
 ## 4.2
 ### ✅ Hitung Keuntungan Speedup dengan Hukum Amdahl
-**Rumus Amdahl:**
-\[
-\text{Speedup} = \frac{1}{(1 - P) + \frac{P}{N}}
-\]
-Keterangan:
-- \( P \) = bagian program yang dapat diparalelkan (60% = 0.6)
-- \( N \) = jumlah core prosesor
+Dengan menggunakan Hukum Amdahl, hitunglah percepatan (speedup) dari sebuah aplikasi yang memiliki 60% komponen paralel untuk:
 
-#### (a) Dua core:
-\[
-\text{Speedup} = \frac{1}{(1 - 0.6) + \frac{0.6}{2}} = \frac{1}{0.4 + 0.3} = \frac{1}{0.7} \approx 1.43
-\]
+(a) Dua core prosesor
 
-#### (b) Empat core:
-\[
-\text{Speedup} = \frac{1}{(1 - 0.6) + \frac{0.6}{4}} = \frac{1}{0.4 + 0.15} = \frac{1}{0.55} \approx 1.82
-\]
+(b) Empat core prosesor
 
+<p align="center">
+  <img src="rumus.png" alt="Sigle and Multi Thread" width="500">
+</p>
 ---
 
 ## 4.3

@@ -330,96 +330,104 @@ Program ini adalah contoh dasar bagaimana menjalankan sebuah fungsi dalam thread
 
 ### Practice Exercises Chapter4
 
+# 📘 Tugas: Multithreading dan Amdahl's Law
+
 ## 4.1
-**Provide three programming examples in which multithreading provides better performance than a single-threaded solution.**
+### ✅ Tiga Contoh Pemrograman di mana Multithreading Memberikan Performa Lebih Baik Dibandingkan Single-Threaded
 
-1. **Web Server Handling Multiple Requests**  
-   A multithreaded web server can handle multiple client requests simultaneously, improving responsiveness and throughput compared to a single-threaded server.
+1. **Web Server Menangani Banyak Permintaan Klien**  
+   Web server multithreaded dapat menangani banyak permintaan secara bersamaan, sehingga meningkatkan responsivitas dan throughput dibandingkan server single-threaded.
 
-2. **Parallel Matrix Multiplication**  
-   In matrix operations (such as multiplying large matrices), using threads to compute rows/columns in parallel can significantly reduce computation time.
+2. **Perkalian Matriks Paralel**  
+   Operasi perkalian matriks besar dapat dibagi ke beberapa thread untuk menghitung baris atau kolom secara paralel, sehingga menghemat waktu komputasi secara signifikan.
 
-3. **Video Processing or Rendering**  
-   Encoding or rendering frames of a video can be divided across multiple threads, speeding up the process compared to sequential frame processing.
+3. **Pemrosesan atau Rendering Video**  
+   Proses encoding atau rendering frame video dapat dibagi ke banyak thread untuk mempercepat proses dibandingkan jika dilakukan secara berurutan.
 
 ---
 
-## 4.2  
-**Using Amdahl's Law, calculate the speedup gain of an application that has a 60 percent parallel component for:**
-- **(a) two processing cores**
-- **(b) four processing cores**
-
-**Amdahl’s Law formula:**
+## 4.2
+### ✅ Hitung Keuntungan Speedup dengan Hukum Amdahl
+**Rumus Amdahl:**
 \[
-Speedup = \frac{1}{(1 - P) + \frac{P}{N}}
+\text{Speedup} = \frac{1}{(1 - P) + \frac{P}{N}}
 \]
-Where:
-- \( P \) = parallel portion (60% = 0.6)
-- \( N \) = number of processing cores
+Keterangan:
+- \( P \) = bagian program yang dapat diparalelkan (60% = 0.6)
+- \( N \) = jumlah core prosesor
 
-**(a) Two cores:**
+#### (a) Dua core:
 \[
-Speedup = \frac{1}{(1 - 0.6) + \frac{0.6}{2}} = \frac{1}{0.4 + 0.3} = \frac{1}{0.7} \approx 1.43
+\text{Speedup} = \frac{1}{(1 - 0.6) + \frac{0.6}{2}} = \frac{1}{0.4 + 0.3} = \frac{1}{0.7} \approx 1.43
 \]
 
-**(b) Four cores:**
+#### (b) Empat core:
 \[
-Speedup = \frac{1}{(1 - 0.6) + \frac{0.6}{4}} = \frac{1}{0.4 + 0.15} = \frac{1}{0.55} \approx 1.82
+\text{Speedup} = \frac{1}{(1 - 0.6) + \frac{0.6}{4}} = \frac{1}{0.4 + 0.15} = \frac{1}{0.55} \approx 1.82
 \]
 
 ---
 
-## 4.3  
-**Does the multithreaded web server described in Section 4.1 exhibit task or data parallelism?**
+## 4.3
+### ✅ Apakah Web Server Multithreaded Menunjukkan Paralelisme Tugas atau Data?
 
-It exhibits **task parallelism**. Each thread handles a different client request (task), rather than performing the same operation on different data.
-
----
-
-## 4.4  
-**What are two differences between user-level threads and kernel-level threads? Under what circumstances is one type better than the other?**
-
-**Differences:**
-1. **Control**: User-level threads are managed by the user-level thread library, while kernel-level threads are managed by the OS kernel.
-2. **Context Switch**: Switching between user-level threads is faster as it does not require kernel mode transition, whereas kernel threads require OS intervention.
-
-**Use Cases:**
-- User-level threads are better for applications requiring fast context switching and do not need true parallelism.
-- Kernel-level threads are better when threads need to run truly in parallel on multiple cores.
+Jawaban: **Paralelisme Tugas (Task Parallelism)**  
+Setiap thread menangani permintaan klien yang berbeda, yang berarti tiap thread menjalankan tugas yang berbeda secara bersamaan, bukan operasi yang sama pada data yang berbeda.
 
 ---
 
-## 4.5  
-**Describe the actions taken by a kernel to context-switch between kernel-level threads.**
+## 4.4
+### ✅ Dua Perbedaan antara User-Level Threads dan Kernel-Level Threads & Kapan Lebih Baik Digunakan
 
-1. Save the state (registers, program counter, etc.) of the current thread.
-2. Update thread control blocks (TCBs).
-3. Load the state of the next thread to be scheduled.
-4. Update the memory management data (if needed).
-5. Resume execution of the new thread.
+**Perbedaan:**
+1. **Pengendalian (Control)**:  
+   - User-level thread dikelola oleh library pengguna (tanpa campur tangan OS).
+   - Kernel-level thread dikelola langsung oleh kernel OS.
 
----
+2. **Context Switching:**  
+   - User-level lebih cepat karena tidak melibatkan kernel.
+   - Kernel-level membutuhkan transisi ke mode kernel → lebih lambat.
 
-## 4.6  
-**What resources are used when a thread is created? How do they differ from those used when a process is created?**
-
-- **Thread creation** uses:
-  - Thread control block
-  - Stack
-  - Registers
-  - Scheduling information
-
-- **Process creation** uses:
-  - Separate memory space
-  - File descriptors
-  - Code/data/heap segments
-
-**Difference**: Threads share the same memory space of the process, while processes have isolated memory and resources.
+**Kapan digunakan:**
+- **User-level thread** cocok untuk aplikasi ringan yang membutuhkan context switch cepat dan tidak memerlukan paralelisme sejati.
+- **Kernel-level thread** cocok untuk aplikasi yang butuh eksekusi benar-benar paralel di beberapa core.
 
 ---
 
-## 4.7  
-**Assume that an operating system maps user-level threads to the kernel using the many-to-many model and that the mapping is done through LWPs. Furthermore, the system allows developers to create real-time threads for use in real-time systems. Is it necessary to bind a real-time thread to an LWP? Explain.**
+## 4.5
+### ✅ Langkah Kernel saat Melakukan Context Switch antar Kernel-Level Threads
 
-Yes, it is **necessary** to bind a real-time thread to a Light Weight Process (LWP). Binding ensures that the real-time thread has a dedicated kernel-level entity for execution, which is essential to meet real-time scheduling guarantees and avoid delays caused by contention or remapping.
+1. Menyimpan state thread saat ini (register, program counter, dll).
+2. Memperbarui Thread Control Block (TCB).
+3. Memuat state thread tujuan yang akan dijalankan.
+4. Memperbarui data manajemen memori (jika diperlukan).
+5. Melanjutkan eksekusi thread baru tersebut.
 
+---
+
+## 4.6
+### ✅ Sumber Daya yang Digunakan Saat Membuat Thread vs. Proses
+
+**Saat Membuat Thread:**
+- Thread Control Block
+- Stack thread
+- Register CPU
+- Informasi penjadwalan
+
+**Saat Membuat Proses:**
+- Alokasi memori baru
+- File descriptor sendiri
+- Segment kode, data, dan heap terpisah
+
+**Perbedaan Utama:**  
+Thread berbagi memori dalam satu proses, sedangkan proses memiliki ruang memori dan resource masing-masing secara terpisah.
+
+---
+
+## 4.7
+### ✅ Apakah Thread Real-Time Perlu Diikat ke LWP pada Model Many-to-Many?
+
+**Ya, perlu.**  
+Mengikat (binding) thread real-time ke **Light Weight Process (LWP)** memastikan thread tersebut memiliki entitas kernel khusus untuk dijalankan. Ini penting untuk menjamin jadwal real-time yang presisi dan menghindari delay karena perebutan resource atau remapping.
+
+---

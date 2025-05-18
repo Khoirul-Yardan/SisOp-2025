@@ -28,4 +28,5 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [Komentar Flops Iops](Pertemuan5/flopsiops.md)
 -  [Deskripsi dan Visualisasi Fork](Pertemuan6/README.md)
 -  [konsep single thread dan multithread!](Pertemuan7/README.md)
+-  [CPU Scheduling](pertemuan8/README.md)
 

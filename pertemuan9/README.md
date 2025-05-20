@@ -1,12 +1,6 @@
 # Scheduling Algorithms
 **Oleh:** [Khoirul Yardan Mauluddin Zhorif 3124521022 TI A PSDKU LA]
 
-## Daftar Isi
-- [SJF (Shortest Job First) Scheduling - Non-Preemptive](#SJF-(Shortest-Job-First)-Scheduling-Non-Preemptive)
-- [Implementasi Threading](#implementasi-threading)
-- [PPT EVOLUSI TEKNOLOGI](#PPT-EVOLUSI-TEKNOLOGI)
-
-
 
 ## 🧠 SJF (Shortest Job First) Scheduling - Non-Preemptive
 

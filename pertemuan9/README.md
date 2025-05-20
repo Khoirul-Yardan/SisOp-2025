@@ -290,7 +290,7 @@ Enter Burst Time: 3
 gantt
     title Gantt Chart - SJF Non-Preemptive with Arrival Time
     dateFormat  x
-    axisFormat  %S
+    axisFormat  %L
     section Proses
     P1 : 0, 6
     P4 : 6, 3
@@ -304,3 +304,152 @@ gantt
 
 - Algoritma ini efektif untuk sistem di mana arrival time diketahui dan proses tidak terganggu.
 - Namun, bisa terjadi *starvation* jika proses pendek terus-menerus datang.
+
+
+# SRTF Scheduling Algorithm (Preemptive)
+
+Program ini mengimplementasikan algoritma penjadwalan proses **SRTF (Shortest Remaining Time First)** yang bersifat preemptive. Algoritma ini memilih proses dengan waktu sisa (remaining time) eksekusi terkecil untuk dijalankan berikutnya. Proses yang sedang berjalan dapat diganggu jika ada proses lain yang datang dengan waktu sisa lebih kecil.
+
+---
+
+## Cara Kerja Program
+
+1. Input jumlah proses.
+2. Untuk setiap proses, input waktu kedatangan (Arrival Time) dan waktu eksekusi (Burst Time).
+3. Algoritma SRTF memilih proses dengan remaining time terkecil yang sudah tiba untuk dijalankan setiap satuan waktu.
+4. Proses yang berjalan dapat dihentikan (preempted) jika muncul proses baru dengan waktu sisa lebih kecil.
+5. Output menampilkan Completion Time (CT), Turn Around Time (TAT), dan Waiting Time (WT) untuk setiap proses.
+6. Menghitung rata-rata TAT dan WT.
+
+---
+
+## Contoh Input dan Output
+
+```
+<--SRTF Scheduling Algorithm (Preemptive)-->
+Enter Number of Processes: 4
+
+Process No: 1
+Enter Arrival Time: 0
+Enter Burst Time: 8
+
+Process No: 2
+Enter Arrival Time: 1
+Enter Burst Time: 4
+
+Process No: 3
+Enter Arrival Time: 2
+Enter Burst Time: 9
+
+Process No: 4
+Enter Arrival Time: 3
+Enter Burst Time: 5
+
+Process		AT	BT	CT	TAT	WT
+P2		1	4	5	4	0
+P4		3	5	10	7	2
+P1		0	8	17	17	9
+P3		2	9	26	24	15
+
+Average TurnAroundTime=13.000000
+Average WaitingTime=6.500000
+```
+
+---
+
+## Source Code (C)
+
+```c
+#include<stdio.h>
+#define MAX 9999
+
+struct proc {
+    int no, at, bt, rt, ct, tat, wt;
+};
+
+struct proc read(int i) {
+    struct proc p;
+    printf("\nProcess No: %d\n", i);
+    p.no = i;
+    printf("Enter Arrival Time: ");
+    scanf("%d", &p.at);
+    printf("Enter Burst Time: ");
+    scanf("%d", &p.bt);
+    p.rt = p.bt;
+    return p;
+}
+
+int main() {
+    struct proc p[10], temp;
+    float avgtat = 0, avgwt = 0;
+    int n, s, remain = 0, time;
+
+    printf("<--SRTF Scheduling Algorithm (Preemptive)-->
+");
+    printf("Enter Number of Processes: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+        p[i] = read(i + 1);
+
+    // Sort by arrival time
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (p[j].at > p[j + 1].at) {
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+
+    printf("\nProcess\t\tAT\tBT\tCT\tTAT\tWT\n");
+
+    p[9].rt = MAX; // Sentinel for comparison
+
+    for (time = 0; remain != n; time++) {
+        s = 9;
+        for (int i = 0; i < n; i++)
+            if (p[i].at <= time && p[i].rt < p[s].rt && p[i].rt > 0)
+                s = i;
+
+        p[s].rt--;
+
+        if (p[s].rt == 0) {
+            remain++;
+            p[s].ct = time + 1;
+            p[s].tat = p[s].ct - p[s].at;
+            avgtat += p[s].tat;
+            p[s].wt = p[s].tat - p[s].bt;
+            avgwt += p[s].wt;
+            printf("P%d\t\t%d\t%d\t%d\t%d\t%d\n", p[s].no, p[s].at, p[s].bt, p[s].ct, p[s].tat, p[s].wt);
+        }
+    }
+
+    avgtat /= n;
+    avgwt /= n;
+    printf("\nAverage TurnAroundTime=%f\nAverage WaitingTime=%f\n", avgtat, avgwt);
+}
+```
+
+---
+
+## Contoh Gantt Chart (Mermaid)
+
+```mermaid
+gantt
+    title Gantt Chart - SRTF Preemptive
+    dateFormat  X
+    axisFormat  %L
+
+    section Proses
+    P1 : 0, 1
+    P2 : 1, 4
+    P4 : 5, 5
+    P1 : 10, 7
+    P3 : 17, 9
+```
+
+---
+## Catatan
+- Algoritma ini efektif untuk sistem di mana arrival time diketahui dan proses tidak terganggu.
+
+- Namun, bisa terjadi starvation jika proses pendek terus-menerus datang.

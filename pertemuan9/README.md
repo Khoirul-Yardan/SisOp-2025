@@ -126,6 +126,11 @@ gantt
 
 - Untuk sistem real-time, SJF Preemptive (SRTF) lebih direkomendasikan.
 
+
+---
+
+
+
 # 🧠 SJF (Shortest Job First) Scheduling - Non-Preemptive with Arrival Time
 
 Program ini mengimplementasikan algoritma **Shortest Job First (SJF)** dengan pendekatan **Non-Preemptive** menggunakan bahasa **C** dan mempertimbangkan **Arrival Time** setiap proses.
@@ -286,7 +291,7 @@ Enter Burst Time: 3
 
 ---
 
-<img src="1.png" alt="sjf" width="400">
+<img src="2.png" alt="sjf" width="400">
 
 ## 🕒 Gantt Chart
 
@@ -309,8 +314,11 @@ gantt
 - Algoritma ini efektif untuk sistem di mana arrival time diketahui dan proses tidak terganggu.
 - Namun, bisa terjadi *starvation* jika proses pendek terus-menerus datang.
 
+---
 
-# SRTF Scheduling Algorithm (Preemptive)
+
+
+## SRTF Scheduling Algorithm (Preemptive)
 
 Program ini mengimplementasikan algoritma penjadwalan proses **SRTF (Shortest Remaining Time First)** yang bersifat preemptive. Algoritma ini memilih proses dengan waktu sisa (remaining time) eksekusi terkecil untuk dijalankan berikutnya. Proses yang sedang berjalan dapat diganggu jika ada proses lain yang datang dengan waktu sisa lebih kecil.
 
@@ -360,6 +368,7 @@ Average WaitingTime=6.500000
 ```
 
 ---
+<img src="3.png" alt="sjf" width="400">
 
 ## Source Code (C)
 

@@ -62,7 +62,3 @@ gantt
     P3 : 9, 7
     P2 : 16, 8
 
-Rata-Rata
-⏱️ Average Turn Around Time = (3 + 9 + 16 + 24) / 4 = 13.00
-
-⌛ Average Waiting Time = (0 + 3 + 9 + 16) / 4 = 7.00

@@ -47,6 +47,8 @@ P4 = 3
 
 ---
 
+<img src="1.png" alt="sjf" width="400">
+
 ## 🕒 Gantt Chart Eksekusi
 
 Berikut adalah diagram Gantt Chart untuk penjadwalan berdasarkan burst time terkecil:

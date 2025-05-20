@@ -8,7 +8,7 @@
 
 
 
-# 🧠 SJF (Shortest Job First) Scheduling - Non-Preemptive
+## 🧠 SJF (Shortest Job First) Scheduling - Non-Preemptive
 
 Program ini mengimplementasikan algoritma **Shortest Job First (SJF)** dengan pendekatan **Non-Preemptive** menggunakan bahasa C.  
 SJF Non-Preemptive menjadwalkan proses berdasarkan waktu burst terkecil, dan proses yang sedang berjalan tidak dapat dihentikan oleh proses lain yang datang.

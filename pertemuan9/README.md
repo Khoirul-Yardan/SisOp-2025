@@ -113,6 +113,14 @@ gantt
     P3 : 9, 7
     P2 : 16, 8
 ```
+# Catatan
+- Algoritma ini efisien untuk proses batch tanpa arrival time.
+
+- Namun, dapat menyebabkan kelaparan (starvation) untuk proses yang memiliki burst time besar.
+
+- Cocok untuk sistem di mana semua proses telah diketahui sejak awal.
+
+- Untuk sistem real-time, SJF Preemptive (SRTF) lebih direkomendasikan.
 
 # 🧠 SJF (Shortest Job First) Scheduling - Non-Preemptive with Arrival Time
 
@@ -257,7 +265,7 @@ Enter Burst Time: 3
 
 ---
 
-## 📊 Contoh Output
+## 📊 Contoh Hasil Output
 
 | Process | AT | BT | CT | TAT | WT | RT |
 |---------|----|----|----|-----|----|----|
@@ -274,13 +282,15 @@ Enter Burst Time: 3
 
 ---
 
+<img src="1.png" alt="sjf" width="400">
+
 ## 🕒 Gantt Chart
 
 ```mermaid
 gantt
     title Gantt Chart - SJF Non-Preemptive with Arrival Time
     dateFormat  x
-    axisFormat  %L
+    axisFormat  %S
     section Proses
     P1 : 0, 6
     P4 : 6, 3
@@ -290,7 +300,7 @@ gantt
 
 ---
 
-## ✅ Kesimpulan
+## Catatan
 
 - Algoritma ini efektif untuk sistem di mana arrival time diketahui dan proses tidak terganggu.
 - Namun, bisa terjadi *starvation* jika proses pendek terus-menerus datang.

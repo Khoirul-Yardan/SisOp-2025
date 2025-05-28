@@ -30,4 +30,5 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [konsep single thread dan multithread!](Pertemuan7/README.md)
 -  [CPU Scheduling](Pertemuan8/README.md)
 -  [Scheduling Algorithm](pertemuan9/README.md)
+-  [Tugas Tambahan](Tugas_Tambahan/README.md)
 

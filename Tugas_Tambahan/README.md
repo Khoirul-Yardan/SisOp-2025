@@ -37,7 +37,13 @@ P2     |     1      |   2
 P3     |     2      |   1
 ```
 
-Gantt Chart: P1 | P2 | P3
+**Gantt Chart (Non Preemtive):**
+
+```
+| P1 | P2 | P3 |
+|----|----|----|
+| 0  | 5  | 7  | 8
+```
 
 ### 🔹 SJF (Shortest Job First)
 
@@ -54,7 +60,13 @@ P2     |     1      |   4
 P3     |     2      |   2
 ```
 
-Gantt Chart (preemptive): P1 | P2 | P3
+**Gantt Chart (Preemtive):**
+
+```
+| P1 | P3 | P2 | P1 |
+|----|----|----|----|
+| 0  | 2  | 4  | 8  | 16
+```
 
 ### 🔹 Round Robin
 
@@ -70,7 +82,13 @@ P1     |     0      |   5
 P2     |     1      |   3
 ```
 
-Gantt Chart: P1(2) | P2(2) | P1(2) | P2(1) | P1(1)
+**Gantt Chart (Non Preemtive):**
+
+```
+| P1(2) | P2(2) | P1(2) | P2(1) | P1(1) |
+|------|------|------|------|------|
+| 0    | 2    | 4    | 6    | 7    | 8
+```
 
 ### 🔹 Priority Scheduling
 
@@ -89,7 +107,13 @@ P1     |     0      |   4   |    2
 P2     |     1      |   3   |    1
 ```
 
-Gantt Chart Preemptive: P1 | P2 | P1
+**Gantt Chart (Preemtive):**
+
+```
+| P1 | P2 | P2 | P2 | P1 | P1 | P1 |
+|----|----|----|----|----|----|----|
+| 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7
+```
 
 Dalam bab ini dibahas berbagai jenis algoritma penjadwalan, termasuk:
 
@@ -403,5 +427,101 @@ printf("Rata-rata WT : %.2f\n", totalWT / n);
 * Semua nilai akhir dihitung setelah proses selesai.
 
 ---
+
+
+# Penjadwalan CPU: Priority Scheduling (Preemptive)
+
+## 🔄 Alur (Flow) dan Logika Program
+
+### 🧭 Alur Umum Program:
+
+1. **Inisialisasi Proses**
+
+   * Data proses dimasukkan: waktu datang, burst time, dan prioritas.
+   * Sisa waktu (`remaining`) diset sama dengan burst.
+
+2. **Simulasi Waktu**
+
+   * Waktu (`time`) dimulai dari 0 dan terus berjalan hingga semua proses selesai.
+
+3. **Pemilihan Proses**
+
+   * Setiap satuan waktu:
+
+     * Cari semua proses yang sudah datang (`arrival <= time`).
+     * Di antara mereka, pilih proses dengan **prioritas tertinggi** (angka terkecil).
+     * Jika proses baru datang dengan prioritas lebih tinggi, proses lama akan **dipreempt**.
+
+4. **Eksekusi Proses**
+
+   * Proses yang dipilih akan dijalankan selama **1 unit waktu**.
+   * Kurangi nilai `remaining`.
+   * Jika `remaining == 0`, proses dianggap **selesai** dan waktu selesai dicatat.
+
+5. **Perhitungan Akhir**
+
+   * Setelah semua proses selesai, hitung:
+
+     * **Turnaround Time (TAT)** = Finish Time - Arrival Time
+     * **Waiting Time (WT)** = TAT - Burst Time
+   * Hitung juga **rata-rata TAT dan WT**.
+
+---
+
+## 💻 Potongan Kode Penting
+
+### Inisialisasi:
+
+```c
+Process p[3] = {
+    {1, 0, 4, 4, 2},
+    {2, 1, 3, 3, 1},
+    {3, 2, 1, 1, 3}
+};
+```
+
+### Pemilihan dan Eksekusi:
+
+```c
+while (completed < n) {
+    int highest = -1;
+    for (int i = 0; i < n; i++) {
+        if (p[i].arrival <= time && p[i].remaining > 0) {
+            if (highest == -1 || p[i].priority < p[highest].priority)
+                highest = i;
+        }
+    }
+
+    if (highest != -1) {
+        p[highest].remaining--;
+        if (p[highest].remaining == 0) {
+            p[highest].finish = time + 1;
+            completed++;
+        }
+    }
+    time++;
+}
+```
+
+### Perhitungan Output:
+
+```c
+for (int i = 0; i < n; i++) {
+    p[i].turnaround = p[i].finish - p[i].arrival;
+    p[i].waiting = p[i].turnaround - p[i].burst;
+    totalTAT += p[i].turnaround;
+    totalWT += p[i].waiting;
+}
+```
+
+---
+
+## ✅ Kesimpulan Logika
+
+* Simulasi dilakukan per detik.
+* Proses dengan prioritas tertinggi yang tersedia akan dijalankan.
+* Jika ada proses baru dengan prioritas lebih tinggi, sistem akan segera preempt proses lama.
+* Waktu selesai dihitung secara akurat sesuai eksekusi per detik.
+* Semua nilai akhir dihitung setelah proses selesai.
 
 

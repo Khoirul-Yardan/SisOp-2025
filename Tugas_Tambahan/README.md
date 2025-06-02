@@ -175,3 +175,233 @@ P3     |   2     |   1   |     3     |   8    |     6       |   5
 * **Avg Turnaround Time** = (7 + 3 + 6) / 3 = 5.33
 * **Avg Waiting Time** = (3 + 0 + 5) / 3 = 2.67
 
+
+## 💻 Implementasi dalam Bahasa C
+
+```c
+#include <stdio.h>
+
+#define MAX 10
+
+typedef struct {
+    int id, arrival, burst, remaining, priority;
+    int finish, turnaround, waiting;
+} Process;
+
+int main() {
+    Process p[3] = {
+        {1, 0, 4, 4, 2},
+        {2, 1, 3, 3, 1},
+        {3, 2, 1, 1, 3}
+    };
+
+    int time = 0, completed = 0;
+    int n = 3;
+
+    while (completed < n) {
+        int highest = -1;
+        for (int i = 0; i < n; i++) {
+            if (p[i].arrival <= time && p[i].remaining > 0) {
+                if (highest == -1 || p[i].priority < p[highest].priority) {
+                    highest = i;
+                }
+            }
+        }
+
+        if (highest != -1) {
+            p[highest].remaining--;
+            if (p[highest].remaining == 0) {
+                p[highest].finish = time + 1;
+                completed++;
+            }
+        }
+        time++;
+    }
+
+    float totalTAT = 0, totalWT = 0;
+
+    printf("Proses | Arrival | Burst | Priority | Finish | TAT | WT\n");
+    for (int i = 0; i < n; i++) {
+        p[i].turnaround = p[i].finish - p[i].arrival;
+        p[i].waiting = p[i].turnaround - p[i].burst;
+        totalTAT += p[i].turnaround;
+        totalWT += p[i].waiting;
+        printf("P%d     |   %d      |   %d   |    %d     |   %d    |  %d  | %d\n",
+               p[i].id, p[i].arrival, p[i].burst, p[i].priority,
+               p[i].finish, p[i].turnaround, p[i].waiting);
+    }
+
+    printf("\nAverage TAT: %.2f\n", totalTAT / n);
+    printf("Average WT : %.2f\n", totalWT / n);
+
+    return 0;
+}
+```
+
+---
+
+##  Penjelasan Singkat Kode C
+
+### 1. Import dan Konstanta
+
+```c
+#include <stdio.h>
+#define MAX 10
+```
+
+* Menggunakan `stdio.h` untuk input/output.
+* `MAX` disiapkan untuk batas array proses (opsional).
+
+### 2. Struktur Proses
+
+```c
+typedef struct {
+    int id, arrival, burst, remaining, priority;
+    int finish, turnaround, waiting;
+} Process;
+```
+
+* Menyimpan semua data dan waktu penting dari proses.
+
+### 3. Data Proses
+
+```c
+Process p[3] = {
+    {1, 0, 4, 4, 2},
+    {2, 1, 3, 3, 1},
+    {3, 2, 1, 1, 3}
+};
+```
+
+* Contoh proses:
+
+  * P1: datang di 0, burst 4, prioritas 2
+  * P2: datang di 1, burst 3, prioritas 1
+  * P3: datang di 2, burst 1, prioritas 3
+
+### 4. Simulasi Eksekusi
+
+```c
+int time = 0, completed = 0;
+int n = 3;
+```
+
+* `time`: waktu berjalan.
+* `completed`: jumlah proses selesai.
+
+### 5. Loop Utama
+
+```c
+while (completed < n) {
+    int highest = -1;
+    for (int i = 0; i < n; i++) {
+        if (p[i].arrival <= time && p[i].remaining > 0) {
+            if (highest == -1 || p[i].priority < p[highest].priority)
+                highest = i;
+        }
+    }
+```
+
+* Pilih proses dengan prioritas tertinggi yang sudah datang.
+
+```c
+    if (highest != -1) {
+        p[highest].remaining--;
+        if (p[highest].remaining == 0) {
+            p[highest].finish = time + 1;
+            completed++;
+        }
+    }
+    time++;
+}
+```
+
+* Jalankan proses 1 unit waktu.
+* Tandai selesai jika sisa waktunya 0.
+
+### 6. Hitung dan Cetak Hasil
+
+```c
+float totalTAT = 0, totalWT = 0;
+for (int i = 0; i < n; i++) {
+    p[i].turnaround = p[i].finish - p[i].arrival;
+    p[i].waiting = p[i].turnaround - p[i].burst;
+    totalTAT += p[i].turnaround;
+    totalWT += p[i].waiting;
+    printf("P%d | %d | %d | %d | %d | %d | %d\n", 
+        p[i].id, p[i].arrival, p[i].burst, p[i].priority,
+        p[i].finish, p[i].turnaround, p[i].waiting);
+}
+```
+
+* Hitung Turnaround Time (TAT) dan Waiting Time (WT) per proses.
+* Cetak dalam bentuk tabel.
+
+```c
+printf("\nRata-rata TAT: %.2f\n", totalTAT / n);
+printf("Rata-rata WT : %.2f\n", totalWT / n);
+```
+
+* Hitung dan tampilkan rata-rata.
+
+---
+
+## ✅ Ringkasan
+
+* Proses dengan prioritas tertinggi dijalankan lebih dulu.
+* Preemptive: proses bisa dihentikan jika ada proses baru yang lebih prioritas.
+* Output menampilkan waktu selesai, TAT, WT, dan rata-ratanya.
+
+---
+
+
+
+## Alur (Flow) dan Logika Program
+
+###  Alur Umum Program:
+
+1. **Inisialisasi Proses**
+
+   * Data proses dimasukkan: waktu datang, burst time, dan prioritas.
+   * Sisa waktu (`remaining`) diset sama dengan burst.
+
+2. **Simulasi Waktu**
+
+   * Waktu (`time`) dimulai dari 0 dan terus berjalan hingga semua proses selesai.
+
+3. **Pemilihan Proses**
+
+   * Setiap satuan waktu:
+
+     * Cari semua proses yang sudah datang (`arrival <= time`).
+     * Di antara mereka, pilih proses dengan **prioritas tertinggi** (angka terkecil).
+     * Jika proses baru datang dengan prioritas lebih tinggi, proses lama akan **dipreempt**.
+
+4. **Eksekusi Proses**
+
+   * Proses yang dipilih akan dijalankan selama **1 unit waktu**.
+   * Kurangi nilai `remaining`.
+   * Jika `remaining == 0`, proses dianggap **selesai** dan waktu selesai dicatat.
+
+5. **Perhitungan Akhir**
+
+   * Setelah semua proses selesai, hitung:
+
+     * **Turnaround Time (TAT)** = Finish Time - Arrival Time
+     * **Waiting Time (WT)** = TAT - Burst Time
+   * Hitung juga **rata-rata TAT dan WT**.
+
+
+---
+
+##  Kesimpulan Logika
+
+* Simulasi dilakukan per detik.
+* Proses dengan prioritas tertinggi yang tersedia akan dijalankan.
+* Jika ada proses baru dengan prioritas lebih tinggi, sistem akan segera preempt proses lama.
+* Waktu selesai dihitung secara akurat sesuai eksekusi per detik.
+* Semua nilai akhir dihitung setelah proses selesai.
+
+---
+
+

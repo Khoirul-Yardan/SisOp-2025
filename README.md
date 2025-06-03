@@ -32,3 +32,8 @@ Khoirul Yardan Mauluddin Zhorif (3124521022) TI A
 -  [Scheduling Algorithm](pertemuan9/README.md)
 -  [Tugas Tambahan](Tugas_Tambahan/README.md)
 
+### UAS
+
+-  [PDF UAS No.11 & 2](3124521022%20-%20UAS%20SisOp.pdf)
+
+
